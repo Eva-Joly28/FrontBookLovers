@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 
 const Header = () => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" class="bg-body-tertiary justify-content-between">
       <Container fluid>
         <Navbar.Brand href="/">GetYoAlbum</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -22,9 +22,12 @@ const Header = () => {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#">Favoris</Nav.Link>
-            <Nav.Link href="#">Ajouter un livre</Nav.Link>
+            <Nav.Link href="/createBook">Ajouter un livre</Nav.Link>
 
-            <Form inline>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+      <Form inline>
         <Row>
           <Col xs="auto">
             <Form.Control
@@ -38,9 +41,6 @@ const Header = () => {
           </Col>
         </Row>
       </Form>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
     </Navbar>
   )
 }
