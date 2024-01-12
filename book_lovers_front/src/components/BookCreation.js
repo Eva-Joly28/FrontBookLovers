@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/esm/Container';
+import { Alert } from 'bootstrap';
 
 
 const BookCreation = () => {
@@ -16,17 +17,27 @@ const BookCreation = () => {
         cover: '',
         rate: 0,
       });
+
+      const[error,seterror] = useState(false);
     
       const createBook = async () => {
         try {
           await axios.post('https://backendtest-5h60.onrender.com/book', book);
           console.log('Book created successfully');
-          // Add any additional logic or feedback here
         } catch (error) {
           console.error('Error creating book:', error.message);
-          // Handle error and provide feedback to the user
+          seterror(true)
         }
       };
+
+      if(error){
+        <Alert variant="danger">
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>
+            Change this and that and try again. 
+          </p>
+        </Alert>;
+      }
     
       const handleInputChanges = (e) => {
         const { name, value } = e.target;

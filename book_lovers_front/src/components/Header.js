@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
@@ -6,9 +6,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
+
+  const [inputValue, setinputValue] = useState('')
+  const navigate = useNavigate()
+
+  const handleSearch = () => {
+    navigate(`/books?query=${inputValue}`);
+  }
+
   return (
     <Navbar bg="light" expand="lg" class="bg-body-tertiary justify-content-between">
       <Container fluid>
@@ -34,10 +43,11 @@ const Header = () => {
               type="text"
               placeholder="entrez un titre de livre"
               className=" mr-sm-2"
+              onChange={(e) => setinputValue(e.target.value)}
             />
           </Col>
           <Col xs="auto">
-            <Button type="submit">Rechercher</Button>
+            <Button type="submit" onClick={handleSearch}>Rechercher</Button>
           </Col>
         </Row>
       </Form>
