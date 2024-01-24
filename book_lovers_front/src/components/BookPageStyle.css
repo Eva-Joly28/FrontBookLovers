@@ -1,0 +1,33 @@
+#one{
+  display: flex;
+  border: 2px solid rgb(110, 143, 232);
+  border-radius: 15px;
+  padding: 3em;
+  margin: 5em;
+  max-width: 800px;
+}
+
+#two{
+  padding: 3em;
+  margin: 5em;
+}
+
+h1{
+  margin: 2em;
+}
+
+#one #f{
+    flex: 1;
+    padding-right: 5em;
+    min-width: 15em;
+}
+
+#one div{
+  flex:2;
+  padding-right: 2em;
+}
+
+#one h2,p{
+    margin: 2em;
+    justify-content: start;
+}
