@@ -6,22 +6,20 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import { useState } from 'react';
 import SearchingBook from './components/SearchingBook';
+import BookPage from './components/BookPage';
 
 function App() {
-  const [queryValue, setqueryValue] = useState('')
-
-  const handleInputValue = (query) =>{
-    setqueryValue(query)
-  }
 
   return (
     <>
-    <Header/>
+    {/* <Header/> */}
     <BrowserRouter>
+      <Header/>
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/createBook" element={<BookCreation/>} />
         <Route path='/books' element={<SearchingBook/>} />
+        <Route path="books/book/:isbn" element={<BookPage/>}/>
       </Routes>
     </BrowserRouter>
     </>

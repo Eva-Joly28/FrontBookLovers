@@ -1,35 +1,36 @@
 import axios from 'axios';
 import { Alert } from 'bootstrap';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
+import BookItem from './BookItem';
 
 const SearchingBook = () => {
 
-  const{query} = useParams()
+  const[params] = useSearchParams()
   const[error,seterror] = useState(false);
   const[books,setbooks] = useState([])
 
   useEffect(() =>{ 
+    const query = params.get("title")
     if(query !== ''){
       axios.get(`https://backendtest-5h60.onrender.com/book?title=${query}`)
       .then(function (response) {
-        // handle success
-        //setdata(response.data.products);
-        //setspinner(false);
-        console.log(response);
+    
+        setbooks(response.data);
+        
+        console.log(response.data);
       })
       .catch(function (error) {
-        // handle error
         //console.log(error);
         seterror(true);
-        //setspinner(false);
+       
       });
     }
     else{
       seterror(true)
     }
     
-  } ,[]);
+  } ,[params]);
 
   if(error){
     <Alert variant="danger">
@@ -40,10 +41,25 @@ const SearchingBook = () => {
     </Alert>;
   }
 
+  const booksNew = books.map((i) =>{
+    console.log(i);
+    var myIsbn = ""
+    if(i.isbn != null){
+      const list = i.isbn.split(',')
+      myIsbn = list[0]
+    }
+    else{
+      myIsbn = i.isbn
+    }
+    
+    //const index = i.author.lastIndexOf(',')
+    //const myAuthor = i.author.replaceAt(index,' ')
+    
+    return <BookItem title={i.title} isbn={myIsbn} cover={i.cover} author={i.author} summary = {i.summary}/>})
 
-
+  
   return (
-    <div>SearchingBook</div>
+    <div>{booksNew}</div>
   )
 }
 

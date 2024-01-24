@@ -8,15 +8,14 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from 'react-router-dom';
 
-
 const Header = () => {
 
   const [inputValue, setinputValue] = useState('')
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
-  const handleSearch = () => {
-    navigate(`/books?query=${inputValue}`);
-  }
+  /*const handleSearch = () => {
+    navigate(`/books?title=${inputValue}`);
+  }*/
 
   return (
     <Navbar bg="light" expand="lg" class="bg-body-tertiary justify-content-between">
@@ -36,7 +35,7 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
-      <Form inline>
+      <Form inline >
         <Row>
           <Col xs="auto">
             <Form.Control
@@ -47,7 +46,13 @@ const Header = () => {
             />
           </Col>
           <Col xs="auto">
-            <Button type="submit" onClick={handleSearch}>Rechercher</Button>
+          <Link
+            to={{
+              pathname: '/books',
+              search: `?title=${inputValue}`,
+            }}>
+            <Button type="submit">Rechercher</Button>
+          </Link>
           </Col>
         </Row>
       </Form>
