@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 
-const BookItem = (props) => {
+const BookFavorites = (props) => {
     return (
         <Col>
             <Card>
