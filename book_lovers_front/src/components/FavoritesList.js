@@ -1,37 +1,40 @@
-// FavoritesList.js
-
 import React, { useState, useEffect } from 'react';
+import { Table } from 'react-bootstrap';
 import axios from 'axios';
 
-const FavoritesList = () => {
-    const [favorites, setFavorites] = useState([]);
+const BookList = () => {
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        // Effectue une requête pour obtenir la liste des livres favoris depuis l'API
-        const fetchFavorites = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/favorites');
-                setFavorites(response.data);
-            } catch (error) {
-                console.error('Erreur lors de la récupération des favoris :', error);
-            }
-        };
-
-        fetchFavorites();
-    }, []); // Exécute le fetch une seule fois lors du montage du composant
+        // Effectuez une requête HTTP pour récupérer la liste des livres depuis votre backend
+        axios.get('http://localhost:8080/api/favorites')
+            .then(response => setBooks(response.data))
+            .catch(error => console.error('Erreur lors de la récupération des livres:', error));
+    }, []);
 
     return (
         <div>
-            <h2>Liste des Livres Favoris</h2>
-            <ul>
-                {favorites.map((book) => (
-                    <li key={book.id}>
-                        <strong>{book.title}</strong> - {book.author}
-                    </li>
+            <h2>Liste des Livres favoris</h2>
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Description</th>
+                    {/* Ajoutez d'autres colonnes en fonction de vos données */}
+                </tr>
+                </thead>
+                <tbody>
+                {books.map(book => (
+                    <tr key={book.id}>
+                        <td>{book.title}</td>
+                        <td>{book.author}</td>
+                        <td>{book.description}</td>
+                        {/* Ajoutez d'autres colonnes en fonction de vos données */}
+                    </tr>
                 ))}
-            </ul>
+                </tbody>
+            </Table>
         </div>
     );
 };
-
-export default FavoritesList;
