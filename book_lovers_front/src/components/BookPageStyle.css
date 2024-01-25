@@ -7,16 +7,37 @@
   max-width: 800px;
 }
 
-#two{
-  padding: 3em;
-  margin: 5em;
+#addComments{
+  padding: 1.5em;
+  margin-left: 5em;
+  
 }
+
+#commentaires{
+  padding: 3em;
+  margin-left: 5em;
+  margin-top: 5em ;
+  margin-bottom: 2em;
+}
+
+#commentaires h2{
+  color: gray;
+  margin: 2em;
+}
+
+#commentaires p{
+  margin : 2em;
+  border: 2px solid rgb(75, 38, 17);
+  padding: 1.2em;
+
+}
+
 
 h1{
   margin: 2em;
 }
 
-#one #f{
+#one #cover{
     flex: 1;
     padding-right: 5em;
     min-width: 15em;
